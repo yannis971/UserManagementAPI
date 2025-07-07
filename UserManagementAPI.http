@@ -1,0 +1,95 @@
+### ✅ Create a valid user
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+  "userId": 3,
+  "userName": "Charlie",
+  "userAge": 28,
+  "userEmail": "charlie@example.com"
+}
+
+### ❌ Create a user with missing name
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+  "userId": 4,
+  "userName": "",
+  "userAge": 22,
+  "userEmail": "no-name@example.com"
+}
+
+### ❌ Create a user with invalid email
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+  "userId": 5,
+  "userName": "Invalid Email",
+  "userAge": 40,
+  "userEmail": "not-an-email"
+}
+
+### ❌ Create a user that already exists
+POST http://localhost:5000/users
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "userName": "Duplicate Alice",
+  "userAge": 30,
+  "userEmail": "alice@duplicate.com"
+}
+
+### ✅ Get all users
+GET http://localhost:5000/users
+
+### ✅ Get user by ID (existing)
+GET http://localhost:5000/users/1
+
+### ❌ Get user by ID (non-existent)
+GET http://localhost:5000/users/999
+
+### ✅ Update existing user
+PUT http://localhost:5000/users/2
+Content-Type: application/json
+
+{
+  "userId": 2,
+  "userName": "Bob Updated",
+  "userAge": 26,
+  "userEmail": "bob.updated@example.com"
+}
+
+### ❌ Update user with invalid data
+PUT http://localhost:5000/users/2
+Content-Type: application/json
+
+{
+  "userId": 2,
+  "userName": "",
+  "userAge": -5,
+  "userEmail": "invalid"
+}
+
+### ❌ Update non-existent user
+PUT http://localhost:5000/users/999
+Content-Type: application/json
+
+{
+  "userId": 999,
+  "userName": "Ghost",
+  "userAge": 100,
+  "userEmail": "ghost@example.com"
+}
+
+### ✅ Delete existing user
+DELETE http://localhost:5000/users/3
+
+### ❌ Delete non-existent user
+DELETE http://localhost:5000/users/999
+
+
+### ❌ Trigger not found error
+GET http://localhost:5000/unhandled
